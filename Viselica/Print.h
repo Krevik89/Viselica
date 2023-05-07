@@ -182,18 +182,24 @@ void ConsoleCursorVisible(bool show, short size)
     SetConsoleCursorInfo(hStdOut, &structCursorInfo);
 }
 
-void Show2() {
+void Game(string slovo) {
     char c = 0;
     int r = 0;
-    char mas[5]{'*','*','*','*','*' };
-     int k = 0;
+    string sl = slovo;
+    int lengt = slovo.size();
+    char * mas = new char[lengt];
+    for (int i = 0; i < lengt; i++)
+    {
+        mas[i] ='*';
+    }
+    int k = 0;
 
     ConsoleCursorVisible(false, 100);
     do
     {
         shoW(r);
         cout << "\n\n";
-            for (int i = 0; i < 5; i++)
+            for (int i = 0; i < lengt; i++)
             {
                 cout << mas[i] << " ";
             }
@@ -201,23 +207,23 @@ void Show2() {
         cout << "\nPlease Enter Symbol\n";
         c = _getch();
 
-        if (int(c) < 97 || int(c) > 122) {
+        if (sl[k] != c) {
             r++;
             system("cls");
             continue;
         }
-        if (int(c) > 96 || int(c) < 123) {
+        if ( sl[k] == c) {
             mas[k] = c;
             k++;
         }
         
-        
         system("cls");
-    } while (r < 10 && k < 5);
+    } while (r < 10 && k < lengt);
+
     if (r == 10) {
         cout << "You've lost";
     }
-    if (k == 5) {
+    if (k == lengt) {
         cout << "You Win!!!";
     }
 }

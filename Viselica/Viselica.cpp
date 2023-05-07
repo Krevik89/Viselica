@@ -1,13 +1,12 @@
 ﻿#include <iostream>
-using namespace std;
 #include"Print.h"
 
+using namespace std;
 
 int main()
 {
-    Show2();
+    //передай сюда слово в функцию 
+    Game("slovojopa");
         
-    
-    
 }
 
