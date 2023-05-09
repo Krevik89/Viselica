@@ -6,7 +6,8 @@ using namespace std;
 int main()
 {
     //передай сюда слово в функцию 
-    Game("slovojopa");
+    
+    Game(Slovo());
         
 }
 
