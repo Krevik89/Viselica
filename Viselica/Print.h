@@ -5,6 +5,7 @@
 #include <fstream>
 #include <string>
 #include <iomanip>
+#include <vector>
 
 using namespace std;
 clock_t start_time = clock();
@@ -23,8 +24,7 @@ void shoW(int s) {
             "                       \n"
             "                       \n"
             "                       \n"
-            "                                 \n";
-            
+            "                                 \n";   
         break;
     case 1:
         cout << "                       \n"
@@ -166,9 +166,7 @@ void shoW(int s) {
             "                      $\n"
             "            $$$$$$$$$$$$$$$$$$$$$\n";
         break;
-    }
-    
-            
+    }         
 }
 HANDLE hStdOut = GetStdHandle(STD_OUTPUT_HANDLE); // Получаем дескриптор консоли
 // Текстовый курсор в точку x,y 
@@ -185,32 +183,23 @@ void ConsoleCursorVisible(bool show, short size)
     SetConsoleCursorInfo(hStdOut, &structCursorInfo);
 }
 string Slovo() {
-
-    setlocale(0, "");
-    // Открываем файл для чтения
-    ifstream inputFile("slovo.txt");
-
-    // Проверяем, удалось ли открыть файл
-    if (!inputFile.is_open()) {
-        cerr << "Ошибка открытия файла!" << endl;
-
+    SetConsoleCP(1251);
+    SetConsoleOutputCP(1251);
+    srand(time(0));
+    ifstream fin("slovo.txt");
+    vector <string> read;
+    if (fin)
+    {
+        for (; fin;)
+        {
+            string temp;
+            getline(fin, temp);
+            read.push_back(temp);
+        }
+        read.pop_back();
     }
-
-    // Считываем содержимое файла в строку
-    string inputString;
-    getline(inputFile, inputString);
-
-    // Закрываем файл
-    inputFile.close();
-
-    // Переворачиваем строку
-
-    string words = _strrev((char*)inputString.c_str());
-
-    // string words;
-    words[rand() % (sizeof(words) / sizeof(words[0]))];
-    //выделяем слово ;
-
+    string words = read[rand() % read.size()];
+    reverse(words.begin(), words.end());
     return words;
 }
 void Game(string slovo) {

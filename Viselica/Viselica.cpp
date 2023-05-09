@@ -3,8 +3,6 @@
 
 using namespace std;
 
-int main()
-{
-    Game(Slovo());   
+int main(){
+	Game(Slovo());
 }
-
